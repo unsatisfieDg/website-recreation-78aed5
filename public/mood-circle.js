@@ -132,13 +132,13 @@ function mountWheel(root,scope){
       const len = name.length;
       if(len > 15){ // e.g. GRANDDADDY PURPLE (17), LONDON POUND CAKE (17), PINEAPPLE EXPRESS (17)
         leftEl.style.fontSize = 'clamp(46px, 9.8vw, 155px)';
-        leftEl.style.letterSpacing = '-0.02em';
+        leftEl.style.letterSpacing = '0.015em';
       } else if(len > 10){ // e.g. SOUR DIESEL (11), PINK CANDY (10), BLUE DREAM (10)
         leftEl.style.fontSize = 'clamp(60px, 13vw, 210px)';
-        leftEl.style.letterSpacing = '-0.03em';
+        leftEl.style.letterSpacing = '0.02em';
       } else { // e.g. OG KUSH (7), GELATO (6), RUNTZ (5)
         leftEl.style.fontSize = 'clamp(80px, 18vw, 280px)';
-        leftEl.style.letterSpacing = '-0.04em';
+        leftEl.style.letterSpacing = '0.025em';
       }
 
      // Remove all enter and exit animation classes
@@ -164,6 +164,46 @@ function mountWheel(root,scope){
 
    const badgeStrain = $('[data-henrietta-badge-strain]');
    if(badgeStrain) badgeStrain.textContent = currentEntry.name;
+
+   // Update angled flavour badges with entrance animation
+   const badgesContainer = $('[data-henrietta-badges]');
+   if(badgesContainer) {
+     badgesContainer.classList.remove('henrietta-badge-pop', 'henrietta-badge-exit');
+     void badgesContainer.offsetWidth; // trigger reflow
+     badgesContainer.classList.add('henrietta-badge-pop');
+   }
+
+   const badgeType = $('[data-henrietta-badge-type]');
+   if(badgeType) {
+     badgeType.textContent = (profile.packLabel || profile.type || 'HYBRID').toUpperCase();
+   }
+   const badgeNote = $('[data-henrietta-badge-note]');
+   if(badgeNote) {
+     const flavourNotes = {
+       'gelato': 'PEACH CREAM',
+       'melon-wave': 'PEACH CREAM',
+       'granddaddy-purple': 'BLACK GRAPE',
+       'grape-rush': 'BLACK GRAPE',
+       'pineapple-express': 'TROPICAL GOLD',
+       'mango-mirage': 'TROPICAL GOLD',
+       'pink-candy': 'RED CHERRY',
+       'cherry-drift': 'RED CHERRY',
+       'blue-dream': 'BLUEBERRY',
+       'blueberry-cobbler': 'BLUEBERRY',
+       'runtz': 'SWEET BERRY',
+       'berry-blast': 'SWEET BERRY',
+       'sour-diesel': 'ACID CITRUS',
+       'og-kush': 'PINE & EARTH',
+       'london-pound-cake': 'VANILLA CAKE'
+     };
+     badgeNote.textContent = flavourNotes[currentEntry.id] || (profile.line || currentEntry.name).replace(/\.$/, '').toUpperCase();
+   }
+
+   // Update static HD flavour cinema backdrop image on the right
+   const swirlImg = $('[data-cinema-swirl-img]');
+   if(swirlImg && profile.film) {
+     swirlImg.src = `assets/flavour-cinema/${profile.film}-poster.webp`;
+   }
 
    const tagEl = $('[data-cinema-tag]');
    if(tagEl) tagEl.textContent = currentEntry.family==='vapes'?'Vape Bar':currentEntry.family==='gummies'?'Edible':'Pre-roll';
@@ -200,6 +240,7 @@ function mountWheel(root,scope){
    root.style.setProperty('--henrietta-bg', theme.bg);
    root.style.setProperty('--henrietta-text', theme.text);
    root.style.setProperty('--henrietta-badge', theme.badge);
+   root.style.setProperty('--henrietta-badge-bg', theme.badge);
 
    // Legacy attributes
    $('[data-cinema-name]').textContent=currentEntry.name;
@@ -288,6 +329,14 @@ function mountWheel(root,scope){
     const exitClass = `exit-${motionType}-${lastTravelDirection}`;
     leftEl.classList.add(exitClass);
     rightEl.classList.add(exitClass);
+  }
+
+  // Animate badge exit — synced with word exit (0.72s)
+  const badgesEl = $('[data-henrietta-badges]');
+  if(badgesEl) {
+    badgesEl.classList.remove('henrietta-badge-pop', 'henrietta-badge-exit');
+    void badgesEl.offsetWidth;
+    badgesEl.classList.add('henrietta-badge-exit');
   }
 
   const slot=slotAt(destination),entry=entryFor(slot,true),splash=flavourSplash(entry);
