@@ -317,10 +317,168 @@
   background: transparent;
   /* Hidden by default, shown only when cinema is open */
   visibility: hidden;
+  overflow: hidden;
 }
 
 .mood-circle[data-cinema=true][data-cinema-inside=false] .henrietta-stage-bg {
   visibility: visible;
+}
+
+/* Static HD flavour cinema backdrop on the right */
+.henrietta-swirl-bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 58vw;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+  opacity: 1;
+  mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 22%, black 60%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 22%, black 60%);
+  transition: opacity 0.8s ease;
+}
+
+.henrietta-swirl-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center right;
+  mix-blend-mode: normal;
+  opacity: 1;
+  filter: contrast(1.06) saturate(1.1);
+  image-rendering: -webkit-optimize-contrast;
+  transition: opacity 0.8s ease, transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scale(1.02);
+}
+
+/* Angled ribbon badges on the left side over the giant letters */
+.henrietta-flavour-badges {
+  position: absolute;
+  top: 50%;
+  left: clamp(14%, 18vw, 24%);
+  transform: translateY(-90%) rotate(-6.5deg);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: flex-start;
+  z-index: 3;
+  pointer-events: none;
+  filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.28)) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  animation: henriettaBadgeFloat 4.2s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes henriettaBadgeFloat {
+  0%, 100% {
+    transform: translateY(-90%) rotate(-6.5deg);
+  }
+  50% {
+    transform: translateY(calc(-90% - 7px)) rotate(-5deg);
+  }
+}
+
+.henrietta-badge-pill {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(13px, 1.4vw, 19px);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  padding: 6px 18px 5px;
+  border-radius: 6px;
+  white-space: nowrap;
+  background-color: var(--henrietta-badge-bg, #d84e1b);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.35), 0 3px 8px rgba(0, 0, 0, 0.25);
+  transform-origin: center left;
+  transition: background-color 0.8s ease, transform 0.4s ease;
+  will-change: transform, opacity;
+}
+
+.henrietta-badge-strain {
+  font-size: clamp(12px, 1.2vw, 16px);
+  padding: 5px 16px 5px;
+  z-index: 2;
+  position: relative;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4), 0 4px 10px rgba(0, 0, 0, 0.35);
+}
+
+.henrietta-badge-note {
+  font-size: clamp(14px, 1.55vw, 21px);
+  padding: 8px 20px 6px;
+  margin-top: -8px;
+  margin-left: -3px;
+  z-index: 1;
+  position: relative;
+}
+
+/* Badge entrance punch / pop animation when switching flavours */
+.henrietta-badge-pop .henrietta-badge-strain {
+  animation: badgePopStrain 0.82s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.henrietta-badge-pop .henrietta-badge-note {
+  animation: badgePopNote 0.82s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+}
+
+@keyframes badgePopStrain {
+  0% {
+    opacity: 0;
+    transform: scale(0.65) translateX(-25px) rotate(-8deg);
+  }
+  70% {
+    transform: scale(1.08) translateX(2px) rotate(1deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateX(0) rotate(0);
+  }
+}
+
+@keyframes badgePopNote {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) translateX(-35px) rotate(-12deg);
+  }
+  70% {
+    transform: scale(1.1) translateX(3px) rotate(1.5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateX(0) rotate(0);
+  }
+}
+
+/* Badge exit animation — matches word exit timing (0.72s) */
+.henrietta-badge-exit .henrietta-badge-strain {
+  animation: badgeExitStrain 0.72s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.henrietta-badge-exit .henrietta-badge-note {
+  animation: badgeExitNote 0.72s cubic-bezier(0.16, 1, 0.3, 1) 0.04s both;
+}
+
+@keyframes badgeExitStrain {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateX(0) rotate(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.7) translateX(-30px) rotate(-8deg);
+  }
+}
+
+@keyframes badgeExitNote {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateX(0) rotate(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.65) translateX(-40px) rotate(-12deg);
+  }
 }
 
 /* Huge background typography: centered full name */
@@ -333,15 +491,24 @@
   font-size: clamp(52px, 11vw, 175px);
   font-weight: 900;
   line-height: 0.85;
-  letter-spacing: -0.04em;
+  letter-spacing: 0.018em;
   text-transform: uppercase;
-  color: var(--henrietta-text, #fbd6c6) !important;
-  opacity: 0.88;
+  color: #ffffff !important;
+  opacity: 1 !important;
+  -webkit-text-stroke: 2px #ffffff;
+  paint-order: stroke fill;
+  text-shadow: 
+    0 1px 0 #ffffff,
+    0 2px 0 rgba(0, 0, 0, 0.2),
+    0 4px 0 rgba(0, 0, 0, 0.18),
+    0 6px 0 rgba(0, 0, 0, 0.14),
+    0 8px 12px rgba(0, 0, 0, 0.28),
+    0 18px 40px rgba(0, 0, 0, 0.42);
   user-select: none;
   pointer-events: none;
   white-space: nowrap;
   text-align: center;
-  transition: color 1.1s cubic-bezier(0.2, 0.9, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
   will-change: transform, opacity;
   z-index: 2;
 }
@@ -372,11 +539,11 @@
   bottom: 22%;
   left: 50%;
   transform: translateX(-50%);
-  width: clamp(160px, 22vw, 300px);
-  height: 28px;
-  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.15) 50%, transparent 75%);
+  width: clamp(200px, 30vw, 420px);
+  height: 36px;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.35) 45%, transparent 75%);
   border-radius: 50%;
-  filter: blur(10px);
+  filter: blur(14px);
   z-index: 2;
   animation: henriettaFloatShadow 3.8s ease-in-out infinite;
 }
