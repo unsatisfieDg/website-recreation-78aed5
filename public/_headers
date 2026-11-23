@@ -1,0 +1,4 @@
+/*
+  X-Robots-Tag: noindex, nofollow
+  X-Content-Type-Options: nosniff
+  Content-Security-Policy: default-src 'none'; script-src 'self' 'sha256-FLhxX/s6TCviYJLEupqyEQPBURaa8azyPiMkfoY0Pv4=' 'sha256-TgW6EaoLmaZd1JHkycbB1ZUx9/LeVEWp8TwYVqQHlOQ=' 'sha256-WS1yjciDDGikbeOGKwISsYhAjdHhE/iQZTb+yRxHius=' 'sha256-b2uOPwoC0YauaFInhS6YNCdjeph9HngWdsFEkmzS6RY='; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; style-src-elem 'self'; img-src 'self' blob: data:; font-src 'self'; media-src 'self'; connect-src 'self' blob:; frame-src https://open.spotify.com; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'; worker-src 'none'

@@ -1,0 +1,5 @@
+.scroll-smoke{position:fixed;inset:0;z-index:24;overflow:hidden;pointer-events:none;user-select:none;opacity:0;contain:strict}
+.scroll-smoke-surface{position:absolute;left:-25%;top:16%;width:150%;height:clamp(370px,62vw,100vh);pointer-events:none}
+.motion-off .scroll-smoke,.page-resting .scroll-smoke,.no-scroll .scroll-smoke{display:none}
+@media(max-width:760px){.scroll-smoke-surface{left:-60%;top:22%;width:220%;height:clamp(360px,110vw,72vh)}}
+@media(prefers-reduced-motion:reduce){.scroll-smoke{display:none}}

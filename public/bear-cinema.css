@@ -1,0 +1,23 @@
+/* One baked landscape film, with the bear's real contour rather than a portrait rectangle. */
+body[data-ciao-trial] .bear-story{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0;padding:100px max(var(--gutter),calc((100vw - 1500px)/2)) 110px;background:#18231b;color:#f0eadc;min-height:clamp(760px,100svh,900px);scroll-margin-top:-110px;align-items:center}
+body[data-ciao-trial] .bear-story:before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,#121c17ed,#142018b0 34%,transparent 65%),linear-gradient(180deg,#14241766,transparent 20%,transparent 76%,#142417)}
+body[data-ciao-trial] .bear-story:after{content:none}
+body[data-ciao-trial] .bear-story__copy{padding:0 0 24px 2%;z-index:4}
+body[data-ciao-trial] .bear-story__copy h2{font-size:clamp(72px,7.2vw,108px);line-height:.95;max-width:none;color:#f0eadc}
+body[data-ciao-trial] .bear-story__copy h2 em{color:#e0bc77;line-height:1.02}
+body[data-ciao-trial] .bear-story__copy>p{color:#e0d9c9;margin-top:30px;font-size:15px;line-height:1.65}
+body[data-ciao-trial] .bear-story__link{border-bottom-color:#e0bc7780;color:#f0eadc;margin-top:23px;font-size:13px;gap:32px}
+body[data-ciao-trial] .bear-story__link:hover{border-bottom-color:#f0eadc}
+body[data-ciao-trial] .bear-story__film{position:absolute;inset:0;z-index:auto;width:100%;max-width:none;height:100%;margin:0;aspect-ratio:auto;background:#18231b;box-shadow:none;isolation:auto}
+body[data-ciao-trial] .bear-story__film:before{content:none}
+body[data-ciao-trial] .bear-story__film video{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;object-position:right center;mask-image:none;-webkit-mask-image:none}
+body[data-ciao-trial] .bear-story__film figcaption{top:auto;right:164px;bottom:32px;writing-mode:horizontal-tb;transform:none;color:#f0eadc;font:400 11px/1.4 var(--sans);letter-spacing:.01em;z-index:3}
+body[data-ciao-trial] .bear-story__toggle{position:absolute;right:100px;bottom:24px;z-index:5;display:grid;place-items:center;background:#f0eadcf2;color:#302f26;width:44px;height:44px;border-radius:50%}
+.bear-story__toggle svg{width:15px;height:15px}.bear-story__toggle:hover{background:#fffaf0}.bear-story__toggle:disabled{opacity:.65}
+body[data-ciao-trial] .bear-story__signature{z-index:4;bottom:32px;border:0;padding:0;color:#d7d0bd;font-size:10px}
+body[data-ciao-trial] .bear-story :focus-visible{outline-color:#e0bc77}
+body[data-ciao-trial] .bear-story ::selection{background:#e0bc77;color:#18231b}
+@media(min-width:651px) and (max-width:900px){body[data-ciao-trial] .bear-story{grid-template-columns:1.05fr 1fr;min-height:720px;padding:75px 32px 92px}body[data-ciao-trial] .bear-story__copy h2{font-size:clamp(52px,7.8vw,72px)}body[data-ciao-trial] .bear-story__copy{padding:0}body[data-ciao-trial] .bear-story__copy>p{font-size:14px;margin-top:26px}}
+@media(max-width:650px){body[data-ciao-trial] .bear-story{display:flex;flex-direction:column;gap:26px;min-height:0;padding:108px 24px 72px;align-items:stretch;background:#142417}body[data-ciao-trial] .bear-story:before{background:linear-gradient(180deg,#142018e8,#142018da 36%,transparent 60%,#142417);z-index:1}body[data-ciao-trial] .bear-story__copy{padding:0;z-index:4}body[data-ciao-trial] .bear-story__copy h2{font-size:clamp(58px,16vw,82px)}body[data-ciao-trial] .bear-story__copy h2 br:nth-child(2){display:none}body[data-ciao-trial] .bear-story__copy>p{margin-top:24px;font-size:14px}body[data-ciao-trial] .bear-story__link{margin-top:16px}body[data-ciao-trial] .bear-story__film{position:relative;inset:auto;z-index:auto;width:calc(100% + 48px);height:auto;margin:0 -24px;max-width:none;aspect-ratio:1.08;align-self:center;background:transparent}body[data-ciao-trial] .bear-story__film video{mask-image:linear-gradient(180deg,transparent,#000 92px);-webkit-mask-image:linear-gradient(180deg,transparent,#000 92px)}body[data-ciao-trial] .bear-story__film figcaption{right:24px;bottom:9px;font-size:10px}body[data-ciao-trial] .bear-story__toggle{right:74px;bottom:16px}body[data-ciao-trial] .bear-story__signature{left:24px;bottom:32px;font-size:10px}}
+
+@media(max-width:760px){body[data-ciao-trial] .bear-story{scroll-margin-top:-85px}}

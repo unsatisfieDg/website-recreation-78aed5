@@ -1,0 +1,53 @@
+/* The opening is part of the home page: there is no entrance gate. */
+.hero-atmosphere{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;isolation:isolate;background:radial-gradient(ellipse at 86% 43%,#78836624,transparent 58%)}
+.hero-atmosphere:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#101b13cf,transparent 72%),linear-gradient(0deg,#101b13,transparent 28%,transparent 82%,#101b13);z-index:2}
+.cloud{position:absolute;width:105%;max-width:none;height:auto;mask-image:radial-gradient(ellipse,black 45%,transparent 73%);filter:sepia(.13);will-change:transform}
+.cloud-far{left:29%;top:2%;opacity:.16;animation:cloud-far 49s ease-in-out infinite alternate}
+.cloud-middle{left:38%;top:22%;width:93%;opacity:.22;animation:cloud-middle 38s ease-in-out infinite alternate}
+.cloud-near{left:17%;bottom:-20%;width:120%;opacity:.14;filter:blur(2px);animation:cloud-near 57s ease-in-out infinite alternate}
+.hero-topline,.hero-composition,.hero-bottom{position:relative;z-index:1}
+.hero-stage .stage-disc{opacity:.3}
+.hero-object img{transform:translateY(0);will-change:transform}
+.floating-botanical{position:absolute;display:block;pointer-events:none;z-index:0;opacity:.9;animation:botanical-drift 19s ease-in-out infinite alternate}
+.floating-botanical img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 20px 25px #0004);transform:translateY(0)}
+/* Anchor the tilted flower to the first F, independent of the product stage. */
+.botanical-one{left:-.56em;top:-.56em;width:.85em;height:.85em;--botanical-angle:-42deg;z-index:-1;transform:rotate(var(--botanical-angle));animation-name:finest-botanical-drift}
+.botanical-two{right:-2%;top:1%;width:20%;height:23%;--botanical-angle:22deg;animation-delay:-8s;opacity:.65;filter:blur(.5px)}
+.atmosphere-resting .cloud,.atmosphere-resting .floating-botanical,.atmosphere-resting .hero-object>span{animation-play-state:paused}
+@keyframes cloud-far{from{transform:translate3d(-7%,0,0) scale(1)}to{transform:translate3d(4%,-5%,0) scale(1.12)}}
+@keyframes cloud-middle{from{transform:translate3d(5%,2%,0) scale(1.07)}to{transform:translate3d(-12%,8%,0) scale(.96)}}
+@keyframes cloud-near{from{transform:translate3d(-10%,4%,0) scale(1)}to{transform:translate3d(7%,-5%,0) scale(1.1)}}
+@keyframes botanical-drift{from{transform:translate3d(0,0,0) rotate(var(--botanical-angle))}to{transform:translate3d(16px,-23px,0) rotate(calc(var(--botanical-angle) + 16deg))}}
+@keyframes finest-botanical-drift{from{transform:translate3d(0,0,0) rotate(var(--botanical-angle))}to{transform:translate3d(.025em,-.025em,0) rotate(calc(var(--botanical-angle) + 8deg))}}
+
+/* A quiet playlist dock; Spotify is loaded only after the listener opens it. */
+.playlist-player{position:fixed;right:16px;bottom:max(16px,env(safe-area-inset-bottom));z-index:65;font-family:var(--sans);color:#163c2e}
+.playlist-launch{width:44px;height:44px;display:grid;place-items:center;background:#eee8d8;color:#163c2e;border:1px solid #cbbb9f;border-radius:50%;box-shadow:0 4px 18px #0002;cursor:pointer;transition:background .2s,transform .2s}
+.playlist-launch:hover{background:#fff9e9;transform:translateY(-2px)}
+.playlist-launch[aria-expanded=true]{background:#173b2f;color:#f1eadb;border-color:#adbc8e}
+.playlist-player button:focus-visible,.playlist-external:focus-visible{outline:2px solid #bafb49;outline-offset:4px}
+.playlist-panel{position:absolute;right:0;bottom:calc(100% + 10px);width:min(320px,calc(100vw - 32px));max-height:calc(100svh - 160px);overflow:auto;overscroll-behavior:contain;background:#eee8d8;border:1px solid #cbbb9f;border-radius:14px;box-shadow:0 12px 40px #0004;padding:0 10px 10px}
+.playlist-panel[hidden]{display:none}
+.playlist-heading{height:44px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding-left:6px;font-size:9px;letter-spacing:.13em}
+.playlist-close{display:flex;align-items:center;justify-content:center;gap:5px;font-size:10px;width:82px;height:36px;flex-shrink:0;cursor:pointer;border-radius:50%;color:inherit}
+.playlist-close:hover{background:#d9d8c6}
+.playlist-frame{position:relative;height:152px;border-radius:12px;overflow:hidden;background:#161e18}
+.playlist-frame iframe{position:relative;display:block;width:100%;height:152px;border:0;border-radius:12px}
+.playlist-loading{position:absolute;inset:0;display:grid;place-items:center;color:#eee8d8;font-size:12px;line-height:1.5;padding:24px;text-align:center}
+.playlist-loading[hidden]{display:none}
+.playlist-external{display:flex;justify-content:space-between;align-items:center;min-height:34px;padding:8px 6px 0;font-size:10px;color:#214634}
+.playlist-player[inert]{visibility:hidden}
+.viewing-conveyor .playlist-player,body:has(.product-story.ps-in-view) .playlist-player{top:88px;bottom:auto}
+.viewing-conveyor .playlist-panel,body:has(.product-story.ps-in-view) .playlist-panel{top:calc(100% + 10px);bottom:auto}
+body:has(.playlist-player) .toast{bottom:76px}
+.motion-off .hero-object img,.motion-off .floating-botanical img{transform:none}
+@media(max-width:760px){
+ .hero-atmosphere:after{background:linear-gradient(0deg,#101b13,transparent 28%,#101b1330 70%,#101b13 98%)}
+ .cloud-far{width:210%;left:-5%;top:8%;opacity:.14}.cloud-middle{width:180%;left:3%;top:27%;opacity:.16}.cloud-near{width:220%;left:-30%;bottom:7%;opacity:.13}
+ .botanical-one{left:-.6em;top:-.6em;width:.78em;height:.78em}.botanical-two{right:-3%;top:4%;width:19%;height:19%}
+ .playlist-player{right:12px;bottom:max(12px,env(safe-area-inset-bottom))}
+ .viewing-conveyor .playlist-player,body:has(.product-story.ps-in-view) .playlist-player{top:82px;bottom:auto}
+ .range-edition .hero-composition{height:clamp(340px,46svh,440px)}.range-edition .hero{padding-bottom:72px}
+ .range-edition .hero-bottom{padding-right:60px}.range-edition .scroll-cue{display:none}
+}
+@media(prefers-reduced-motion:reduce){.cloud,.floating-botanical{animation:none}.hero-object img,.floating-botanical img{transform:none!important}.playlist-launch{transition:none}}

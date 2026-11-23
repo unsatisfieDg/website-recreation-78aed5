@@ -1,0 +1,31 @@
+{
+  "id": "edibles",
+  "motion": {
+    "Gummy_1": [
+      -0.018,
+      0.008,
+      0
+    ],
+    "Gummy_2": [
+      -0.009,
+      0.008,
+      0
+    ],
+    "Gummy_3": [
+      0.0,
+      -0.005,
+      0
+    ],
+    "Gummy_4": [
+      0.009,
+      -0.005,
+      0
+    ],
+    "Gummy_5": [
+      0.018,
+      -0.005,
+      0
+    ]
+  },
+  "construction": "Category concept geometry. Final specifications pending."
+}

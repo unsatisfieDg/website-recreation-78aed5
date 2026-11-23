@@ -1,0 +1,3 @@
+/* Each boundary samples the real neighbouring scenery, only 16px on either side. */
+.scene-join{position:relative;z-index:6;height:32px;margin-block:-16px;pointer-events:none;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);mask-image:linear-gradient(180deg,transparent,#000 38%,#000 62%,transparent);-webkit-mask-image:linear-gradient(180deg,transparent,#000 38%,#000 62%,transparent)}
+@supports not (backdrop-filter:blur(1px)){.scene-join--paper{background:linear-gradient(#101b13,#f1f2eb)}.scene-join--river{background:linear-gradient(#f1f2eb,#18231b)}.scene-join--pine{background:linear-gradient(#243022,#142417)}.scene-join--footer{background:linear-gradient(#142417,#09120d)}}

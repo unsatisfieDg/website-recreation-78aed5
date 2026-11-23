@@ -1,0 +1,51 @@
+{
+  "id": "mango-mirage",
+  "name": "Pineapple Express",
+  "format": "glTF 2.0 binary",
+  "units": "metres",
+  "animations": [
+    "Disassemble",
+    "Assemble",
+    "TearOpen",
+    "ResetWrapper"
+  ],
+  "duration": 2.2,
+  "extractColor": "#dcae38",
+  "motion": {
+    "Mouthpiece": [
+      0.014,
+      0.072,
+      0
+    ],
+    "Cartridge": [
+      0.024,
+      0.049,
+      0
+    ],
+    "Collar": [
+      -0.017,
+      0.048,
+      0
+    ],
+    "DeviceHousing": [
+      0,
+      0,
+      0
+    ]
+  },
+  "components": [
+    "Mouthpiece",
+    "Cartridge",
+    "Collar",
+    "DeviceHousing",
+    "Wrapper"
+  ],
+  "revision": "foil-tear-20261113",
+  "source": [
+    "pineapple1.png",
+    "pineapple2.png"
+  ],
+  "construction": "Both supplied foil faces and visible device artwork are reproduced. Hidden geometry and extract tint are illustrative.",
+  "bytes": 1442608,
+  "tearTargets": 22
+}

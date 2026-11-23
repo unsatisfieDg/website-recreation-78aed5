@@ -1,0 +1,24 @@
+import {componentCopy,vapeCopy,vapeInformation,vapeReferenceFacts} from './product-content.js?v=c73acc77c6a5';
+export const revealEditions={
+ 'grape-rush':{slug:'grape',colour:'#9950b9',labels:{Mouthpiece:'Black above violet',Cartridge:'Dark-grape tint',DeviceHousing:'Violet shell with a window',Wrapper:'Purple marbled foil'}},
+ 'mango-mirage':{slug:'mango',colour:'#e9bd28',labels:{Mouthpiece:'Black above mango gold',Cartridge:'Ripe-mango tint',DeviceHousing:'Mango-yellow shell',Wrapper:'Gold marbled foil'}},
+ 'cherry-drift':{slug:'cherry',colour:'#e95346',labels:{Mouthpiece:'Black above cherry red',Cartridge:'Ruby tint',DeviceHousing:'Coral-red shell',Wrapper:'Cherry-red marbling'}},
+ 'blueberry-cobbler':{slug:'blueberry',colour:'#78a8ee',labels:{Mouthpiece:'Black above powder blue',Cartridge:'Deep-blue tint',DeviceHousing:'Pale-blue shell with a window',Wrapper:'Deep-blue marbling'}},
+ 'berry-blast':{slug:'runtz',colour:'#bfce43',labels:{Mouthpiece:'Black above berry lime',Cartridge:'Berry-extract tint',DeviceHousing:'Lime and gold shell',Wrapper:'Marbled berry foil'}},
+ 'melon-wave':{slug:'gelato',colour:'#e89673',labels:{Mouthpiece:'Black above peach satin',Cartridge:'Peach-nectar tint',DeviceHousing:'Peach satin shell',Wrapper:'Peach marbled foil'}},
+ 'sour-diesel':{slug:'sour-diesel',colour:'#9fcf21',labels:{Mouthpiece:'Black above acid lime',Cartridge:'Citrus-extract tint',DeviceHousing:'Acid lime shell',Wrapper:'Neon green foil'}},
+ 'og-kush':{slug:'og-kush',colour:'#149b81',labels:{Mouthpiece:'Black above deep teal',Cartridge:'Forest-resin tint',DeviceHousing:'Deep teal shell',Wrapper:'Teal botanical foil'}},
+ 'london-pound-cake':{slug:'london-pound-cake',colour:'#df72aa',labels:{Mouthpiece:'Black above gold rose',Cartridge:'Amber-extract tint',DeviceHousing:'Gold and rose shell',Wrapper:'Rose marbled foil'}}
+};
+export function productReveal(id,{direct=false}={}){
+ const e=revealEditions[id],profile=vapeCopy[id],name=profile?.strain;if(!e)return '';
+ const tag=direct?'h1':'h2',title=`${direct?'flavour-title':'reveal-title'}-${e.slug}`;
+ return `<section class="product-reveal" data-product-reveal data-range-scene id="${direct?'vape-study':'product-reveal'}" style="--reveal-colour:${profile.shade}" aria-labelledby="${title}">
+ <div class="product-reveal__depth" aria-hidden="true"></div><img class="product-reveal__fruit" src="assets/${profile.art?'flavours/'+profile.art:'flavour-cinema/'+profile.film+'-poster.webp'}" width="1536" height="1024" alt="" decoding="async">
+ <div class="product-reveal__intro"><a class="product-reveal__back" ${direct?'href="vapes.html#collections"':'href="#collections" data-reveal-close'}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6"/></svg>Flavour</a><${tag} id="${title}" tabindex="-1"${name.length>14?' data-long-name':''}>${name}</${tag}><p class="product-reveal__finish">${vapeCopy[id].description}</p><dl class="product-reveal__facts">${vapeReferenceFacts(id).map(([label,value])=>`<div><dt>${label}</dt><dd>${value}</dd></div>`).join('')}</dl></div>
+ <div class="product-reveal__viewer model-editor" data-model-editor="vapes" data-model-flow data-initial-flavour="${id}">
+ <div class="model-stage" data-model-stage><div class="model-float"><img class="model-poster" data-model-poster src="assets/vape-range/${id}-runway.webp" width="589" height="702" alt="${name} EHF vape" decoding="async"><canvas tabindex="0" aria-label="${name} 3D model. Drag or use arrow keys to rotate." hidden></canvas></div>
+ <div class="product-reveal__labels">${Object.entries(e.labels).map(([node,caption])=>`<div data-flow-label="${node}"><b>${componentCopy[node].title}</b><span>${profile.parts[node]||caption}</span></div>`).join('')}</div></div>
+ <div class="product-reveal__controls"><div role="group" aria-label="Product view"><button data-model-view="device" aria-pressed="true">Device</button><button data-model-view="wrapper" aria-pressed="false" disabled>Packaging</button></div><button data-model-open disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 10a8 8 0 1 1 1 8M4 4v6h6"/></svg><b>Replay</b></button><button data-model-reset hidden>Retry 3D view</button><span data-model-gesture>Loading 3D…</span></div><span class="sr-only" data-model-status role="status" aria-live="polite"></span>
+ </div><nav class="flavour-switch" aria-label="Choose a flavour">${Object.keys(revealEditions).map(key=>`<button data-scene-flavour="${key}" aria-pressed="${key===id}">${vapeCopy[key].strain}</button>`).join('')}<button data-scene-motion aria-label="Pause liquid background" aria-pressed="false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M5 3v10M11 3v10"/></svg></button></nav><p class="product-reveal__note">${vapeInformation(id)}</p></section>`;
+}
